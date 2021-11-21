@@ -6,6 +6,7 @@ public class Level : MonoBehaviour
 {
     public GameObject pipe_up;
     public GameObject pipe_down;
+    [SerializeField] private float _pipe_movemenet_speed = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +19,12 @@ public class Level : MonoBehaviour
         
     }
 
-    private void CreatePipe()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-       // Instantiate(pipe_up, new Vector3()) 
+        if (other.gameObject.CompareTag("Bird"))
+        {
+            Debug.Log("inside");
+            Time.timeScale = 0;
+        }
     }
 }
